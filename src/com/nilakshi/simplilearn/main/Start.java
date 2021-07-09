@@ -29,7 +29,7 @@ main_menu:	while(true) {
 
 			switch(choice) {
 			case 1: System.out.println("Listing files:");
-					FileManager.getFileOperation().list().forEach(System.out::println);;
+					FileManager.getFileOperation().list().forEach(System.out::println);
 					break;
 
 			case 2: //TODO: File IO operation
@@ -45,16 +45,19 @@ file_menu:			switch(menu) {
 						case 1: // TODO add a file
 								System.out.println("Enter file name to be added");
 								file=sc.next();
+								FileManager.getFileOperation().addFile(file);
 								break;
 								
 						case 2: // TODO delete a file
 								System.out.println("Enter file name to be deleted");
 								file=sc.next();
+								FileManager.getFileOperation().deleteFile(file);
 								break;
 								
 						case 3: // TODO search a file
 								System.out.println("Enter file name to be searched");
 								file=sc.next();
+								boolean status=FileManager.getFileOperation().searchFile(file);
 								break;
 								
 						case 4: // Back to main menu

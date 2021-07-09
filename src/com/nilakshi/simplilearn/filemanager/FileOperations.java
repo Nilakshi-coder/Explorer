@@ -34,8 +34,7 @@ public class FileOperations implements FileSystem{
 
 	@Override
 	public void addFile(String file) {
-		// TODO Auto-generated method stub
-		
+				
 	}
 
 	@Override
@@ -45,9 +44,9 @@ public class FileOperations implements FileSystem{
 	}
 
 	@Override
-	public void searchFile(String file) {
+	public boolean searchFile(String file) {
 		// TODO Auto-generated method stub
-		
+		return false;
 	}
 
 }
