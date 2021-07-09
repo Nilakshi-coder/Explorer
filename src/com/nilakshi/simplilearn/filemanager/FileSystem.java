@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface FileSystem {
 	
-	public List<Path> list();
+	public List<String> list();
 	
 	public void addFile(String file);
 	

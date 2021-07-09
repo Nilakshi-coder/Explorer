@@ -1,5 +1,6 @@
 package com.nilakshi.simplilearn.main;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -20,7 +21,7 @@ public class Start {
 		Scanner sc = new Scanner(System.in);
 
 main_menu:	while(true) {
-			System.out.println("SELECT from following option:");
+			System.out.println("SELECT from following options:");
 			System.out.println("[1]\t List files");
 			System.out.println("[2]\t File Menu");
 			System.out.println("[3]\t Close the Application");
@@ -28,8 +29,7 @@ main_menu:	while(true) {
 
 			switch(choice) {
 			case 1: System.out.println("Listing files:");
-					//TODO: Add logic to list files
-					new FileManager();
+					FileManager.getFileOperation().list().forEach(System.out::println);;
 					break;
 
 			case 2: //TODO: File IO operation

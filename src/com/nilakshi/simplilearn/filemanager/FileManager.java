@@ -1,16 +1,13 @@
 package com.nilakshi.simplilearn.filemanager;
 
-import java.util.logging.Logger;
-
-import com.nilakshi.simplilearn.config.ProjectConfig;
-
-public class FileManager {
+public abstract class FileManager{
 	
-	String filename = System.getProperty("user.dir");
-	private Logger logger = Logger.getLogger(FileManager.class.getName());
+	private static String filename = System.getProperty("user.dir");
+	private static FileSystem fileSystem = null;
 	
-	public FileManager() {
-		//ProjectConfig.getInstance();
-		logger.info("Current Working Directory: "+filename);
+	public static FileSystem getFileOperation() {
+		if(fileSystem == null)
+			fileSystem = new FileOperations(filename);
+		return fileSystem;
 	}
 }
