@@ -1,7 +1,0 @@
-mkdir lvc1
-cd lvc1
-git init
-git status
-
-https://community.simplilearn.com/threads/phase-1-implement-oops-using-java-with-data-structures-and-beyond-abhinav-sarja-june12-july-10.66411/
-https://drive.google.com/drive/folders/1gPi-mNVpqEk-K8dQ-T4QGHRZvKV0wBxK?usp=sharing
