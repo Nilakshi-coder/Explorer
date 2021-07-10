@@ -21,7 +21,8 @@ public class FileOperations implements FileSystem{
 
 	@Override
 	public List<String> list() {
-		String[] files = currentDir.list();
+		/* fixme: Check whether to list only current directory files or not */
+		String[] files = currentDir.list(); 
 		List<String> sortedFiles = Stream.of(files).sorted(new Comparator<String>() {
 
 			@Override
@@ -61,13 +62,46 @@ public class FileOperations implements FileSystem{
 
 	@Override
 	public boolean searchFile(String fileName){
-		List<String> currentDirFiles = list();
+		List<File> currentDirFiles = Stream.of(currentDir.listFiles())
+												.filter(f -> f.isFile())
+													.sorted()
+													.collect(Collectors.toList());
+		
+		currentDirFiles.forEach(System.out::println);
+		
 		// Implement Binary Search for efficiency
 		
-		for(String file: currentDirFiles) {
-			if(file.equals(fileName))
+		return binarySearch(currentDirFiles, fileName);
+	}
+	
+	private boolean binarySearch(List<File> fileList, String fileName) {
+		int start=0, end=fileList.size()-1;
+		
+		while(start<=end) {
+			System.out.println("Start: "+start+" End: "+end);
+
+			int mid = (start+end)/2;
+			
+			System.out.println(fileList.get(mid).getName());
+			System.out.println(fileList.get(mid).getName().toLowerCase().compareTo(fileName.toLowerCase()));
+			System.out.println(fileName);
+			System.out.println();
+
+			if(fileList.get(mid).getName().equals(fileName)) {
 				return true;
+			}else if(fileList.get(mid).getName().equalsIgnoreCase(fileName)) {
+				return false;
+			}
+			
+			if(fileList.get(mid).getName().toLowerCase().compareTo(fileName.toLowerCase())<0) {
+				start = mid + 1;
+			}
+			
+			if(fileList.get(mid).getName().toLowerCase().compareTo(fileName.toLowerCase())>0) {
+				end = mid -1;
+			}
 		}
+		
 		return false;
 	}
 }
