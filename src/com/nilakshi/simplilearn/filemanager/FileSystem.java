@@ -11,5 +11,5 @@ public interface FileSystem {
 	
 	public void deleteFile(String file);
 	
-	public void searchFile(String file);
+	public boolean searchFile(String file);
 }
