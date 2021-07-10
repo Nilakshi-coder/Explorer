@@ -34,23 +34,38 @@ public class FileOperations implements FileSystem{
 	}
 
 	@Override
-	public void addFile(String file) {
-		// TODO Auto-generated method stub	
+	public boolean addFile(String fileName) {
+		File file = null;
+		try {
+			file = new File(fileName);
+			return file.createNewFile();			
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
 	}
 
 	@Override
-	public void deleteFile(String file) {
-		// TODO Auto-generated method stub
-		
+	public boolean deleteFile(String fileName) {
+		File file = null;
+		try {
+			file = new File(fileName);
+			if(Files.exists(Paths.get(fileName))) {
+				return file.delete();		
+			}
+		}catch (Exception e) {
+			// TODO: handle exception
+		}
+		return false;
 	}
 
 	@Override
-	public boolean searchFile(String file){
+	public boolean searchFile(String fileName){
 		List<String> currentDirFiles = list();
 		// Implement Binary Search for efficiency
 		
-		for(String fileName: currentDirFiles) {
-			if(fileName.equals(file))
+		for(String file: currentDirFiles) {
+			if(file.equals(fileName))
 				return true;
 		}
 		return false;

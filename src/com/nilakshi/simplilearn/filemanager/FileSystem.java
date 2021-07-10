@@ -7,9 +7,9 @@ public interface FileSystem {
 	
 	public List<String> list();
 	
-	public void addFile(String file);
+	public boolean addFile(String file);
 	
-	public void deleteFile(String file);
+	public boolean deleteFile(String file);
 	
 	public boolean searchFile(String file);
 }
