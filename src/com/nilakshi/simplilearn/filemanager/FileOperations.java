@@ -1,6 +1,7 @@
 package com.nilakshi.simplilearn.filemanager;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -34,7 +35,7 @@ public class FileOperations implements FileSystem{
 
 	@Override
 	public void addFile(String file) {
-				
+		// TODO Auto-generated method stub	
 	}
 
 	@Override
@@ -44,9 +45,14 @@ public class FileOperations implements FileSystem{
 	}
 
 	@Override
-	public boolean searchFile(String file) {
-		// TODO Auto-generated method stub
+	public boolean searchFile(String file){
+		List<String> currentDirFiles = list();
+		// Implement Binary Search for efficiency
+		
+		for(String fileName: currentDirFiles) {
+			if(fileName.equals(file))
+				return true;
+		}
 		return false;
 	}
-
 }

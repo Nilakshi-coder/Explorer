@@ -54,10 +54,15 @@ file_menu:			switch(menu) {
 								FileManager.getFileOperation().deleteFile(file);
 								break;
 								
-						case 3: // TODO search a file
+						case 3: // case sensitive
 								System.out.println("Enter file name to be searched");
 								file=sc.next();
 								boolean status=FileManager.getFileOperation().searchFile(file);
+								if(status) {
+									System.out.println("Specified file "+file+" is Present");
+								}else {
+									System.out.println("FILE"+file+" NOT FOUND");
+								}
 								break;
 								
 						case 4: // Back to main menu
