@@ -18,20 +18,15 @@ public class FileOperations implements FileSystem{
 	protected FileOperations(String filePath) {
 		this.currentDir = new File(filePath);
 	}
-
+	
 	@Override
 	public List<String> list() {
-		/* fixme: Check whether to list only current directory files or not */
-		String[] files = currentDir.list(); 
-		List<String> sortedFiles = Stream.of(files).sorted(new Comparator<String>() {
-
-			@Override
-			public int compare(String o1, String o2) {
-				return o1.compareTo(o2);
-			}
-			
-		}).collect(Collectors.toList());
-		return sortedFiles;
+		List<String> currentDirFiles = Stream.of(currentDir.listFiles())
+				.filter(f -> f.isFile())
+					.sorted()
+					.map(f->f.getName())
+					.collect(Collectors.toList());
+		return currentDirFiles;
 	}
 
 	@Override
@@ -61,20 +56,13 @@ public class FileOperations implements FileSystem{
 	}
 
 	@Override
-	public boolean searchFile(String fileName){
-		List<File> currentDirFiles = Stream.of(currentDir.listFiles())
-												.filter(f -> f.isFile())
-													.sorted()
-													.collect(Collectors.toList());
+	public boolean searchFile(String fileName){		
+		List<String> sortedFiles = list();
 		
-		currentDirFiles.forEach(System.out::println);
-		
-		// Implement Binary Search for efficiency
-		
-		return binarySearch(currentDirFiles, fileName);
+		return binarySearch(sortedFiles, fileName);
 	}
 	
-	private boolean binarySearch(List<File> fileList, String fileName) {
+	private boolean binarySearch(List<String> fileList, String fileName) {
 		int start=0, end=fileList.size()-1;
 		
 		while(start<=end) {
@@ -82,22 +70,22 @@ public class FileOperations implements FileSystem{
 
 			int mid = (start+end)/2;
 			
-			System.out.println(fileList.get(mid).getName());
-			System.out.println(fileList.get(mid).getName().toLowerCase().compareTo(fileName.toLowerCase()));
+			System.out.println(fileList.get(mid));
+			System.out.println(fileList.get(mid).toLowerCase().compareTo(fileName.toLowerCase()));
 			System.out.println(fileName);
 			System.out.println();
 
-			if(fileList.get(mid).getName().equals(fileName)) {
+			if(fileList.get(mid).equals(fileName)) {
 				return true;
-			}else if(fileList.get(mid).getName().equalsIgnoreCase(fileName)) {
+			}else if(fileList.get(mid).equalsIgnoreCase(fileName)) {
 				return false;
 			}
 			
-			if(fileList.get(mid).getName().toLowerCase().compareTo(fileName.toLowerCase())<0) {
+			if(fileList.get(mid).toLowerCase().compareTo(fileName.toLowerCase())<0) {
 				start = mid + 1;
 			}
 			
-			if(fileList.get(mid).getName().toLowerCase().compareTo(fileName.toLowerCase())>0) {
+			if(fileList.get(mid).toLowerCase().compareTo(fileName.toLowerCase())>0) {
 				end = mid -1;
 			}
 		}
