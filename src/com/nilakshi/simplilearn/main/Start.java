@@ -1,6 +1,6 @@
 package com.nilakshi.simplilearn.main;
 
-import java.util.List;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -18,52 +18,64 @@ public class Start {
 		System.out.println("**************************************************************");
 		System.out.println();
 
-		sc = new Scanner(System.in);
-
 		try {
 
-			main_menu:	while(true) {
-				System.out.println("SELECT from following options:");
-				System.out.println("[1]\t List files");
-				System.out.println("[2]\t File Menu");
-				System.out.println("[3]\t Close the Application");
-				int choice = sc.nextInt();
+			//Main Menu
+			main_menu:
+				while(true) {
+					sc = new Scanner(System.in);
+					System.out.println("SELECT from following options:");
+					System.out.println("[1]\t List files");
+					System.out.println("[2]\t File Menu");
+					System.out.println("[3]\t Close the Application");
+					int choice=0;
+					try {
+						choice = sc.nextInt();
+					}catch (Exception e) {
+						System.err.println("Select Correct option from menu");
+						sc.reset();
+					}
 
-				switch(choice) {
-				case 1: System.out.println("Listing files:");
-				FileManager.getFileOperation().list().forEach(System.out::println);
-				break;
-
-				case 2: //File Menu
-					showFileMenu();
-					break;
-
-				case 3: System.out.println("Are you sure you want to close the application [yes/no]:");
-				String option = sc.next();
-
-				if(option.equals("yes")) {
-					System.out.println("Application Closed");
-					System.exit(0);
+					switch(choice) {
+						case 0: continue main_menu;
+	
+						case 1: System.out.println("Listing files:");
+								FileManager.getFileOperation().list().forEach(System.out::println);
+								break;
+			
+						case 2: //File Menu
+								showFileMenu();
+								break;
+	
+						case 3: System.out.println("Are you sure you want to close the application [yes/no]:");
+								String option = sc.next();
+			
+								if(option.equals("yes")) {
+									System.out.println("Application Closed");
+									System.exit(0);
+								}
+								break;
+	
+						default: System.err.println("Invalid option selected. Please, reselect");
+								 break;
+	
+					}
+						System.out.println();
 				}
-				break;
 
-				default: System.out.println("Invalid option selected. Please, reselect");
-				break;
-
-				}
-
-				System.out.println();
-
+		} /*
+			 * catch (Exception e) { e.printStackTrace(); }
+			 */finally {
+			if(sc==null) {
+				sc.close();
 			}
-		}catch (Exception e) {
-			e.printStackTrace();
 		}
 
 	}
 
 	static void showFileMenu() {
-		try {
-			while(true) {
+		while(true) {
+			try {
 				System.out.println("FILE MENU Options:");
 				System.out.println("[1]\t Add file");
 				System.out.println("[2]\t Delete file");
@@ -88,13 +100,13 @@ public class Start {
 					System.out.println("Enter file name to be deleted");
 					file=sc.next();
 					boolean result1 = FileManager.getFileOperation().deleteFile(file);
-					
+
 					if(result1) {
 						System.out.println("File successfully deleted.");
 					}else {
 						System.out.println("File not found.");
 					}
-					
+
 					break;
 
 				case 3: // case sensitive
@@ -115,10 +127,12 @@ public class Start {
 
 				}
 				System.out.println();
+			}catch (Exception e) {
+				System.err.println("Select Correct option from menu");
+				sc.reset();
+				sc.next();
 			}
-		}catch (Exception e) {
-			e.printStackTrace();
-			// handle InputMismatchException
 		}
 	}
 }
+
