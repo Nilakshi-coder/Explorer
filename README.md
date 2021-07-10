@@ -7,8 +7,10 @@ The details of the user interface such as options displaying the user interactio
 1. The first option should return the current file names in ascending order. The root directory can be either empty or contain few files or folders in it
 
 2. The second option should return the details of the user interface such as options displaying the following:
+  
     2.1. Add a file to the existing directory list
          You can ignore the case sensitivity of the file names 
+         
     2.2. Delete a user specified file from the existing directory list
          You can add the case sensitivity on the file name in order to ensure that the right file is deleted from the directory list
          Return a message if FNF (File not found)
