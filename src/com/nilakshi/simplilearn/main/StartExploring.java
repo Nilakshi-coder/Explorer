@@ -110,7 +110,7 @@ public class StartExploring {
 					if(status) {
 						System.out.println("File is present");
 					}else {
-						System.out.println("File not found");
+						System.err.println("File not found");
 					}
 					break;
 
