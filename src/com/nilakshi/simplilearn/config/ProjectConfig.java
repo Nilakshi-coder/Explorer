@@ -17,12 +17,12 @@ public class ProjectConfig {
 	
 	private ProjectConfig(){	
 		BufferedReader reader=null;
-		prop = null;
+		prop = new Properties();
 		try {
 			 reader = new BufferedReader(new FileReader(configPath));
 			 prop.load(reader);
 			 
-			 logger.info("Started reading ProjectConfig file");
+			 //logger.info("Started reading ProjectConfig file");
 			 
 			 if(prop.containsKey("RootDirectory")) {
 				 rootDirectory = prop.getProperty("RootDirectory").trim();
@@ -37,7 +37,7 @@ public class ProjectConfig {
 			 
 		}catch(Exception e) {
 			logger.warning("Error while reading ProjectConfig file");
-			e.printStackTrace();
+			//e.printStackTrace();
 		}finally {
 			prop.clear();
 			if(reader!=null) {
