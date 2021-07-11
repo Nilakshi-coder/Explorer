@@ -12,6 +12,7 @@ public class ProjectConfig {
 	private Logger logger = Logger.getLogger(ProjectConfig.class.getName());
 	private static ProjectConfig instance = null;
 	private String configPath="./config/ProjectConfig.properties";
+	private String rootDirectory="";
 	
 	private ProjectConfig(){	
 		BufferedReader reader=null;
@@ -23,7 +24,7 @@ public class ProjectConfig {
 			 logger.info("Started reading ProjectConfig file");
 			 
 			 if(prop.containsKey("RootDirectory")) {
-				 
+				 rootDirectory = prop.getProperty("RootDirectory").trim();
 			 }else {
 				 throw new PropertyNotFound("RootDirectory");
 			 }

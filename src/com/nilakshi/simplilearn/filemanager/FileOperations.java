@@ -66,7 +66,7 @@ public class FileOperations implements FileSystem{
 		int start=0, end=fileList.size()-1;
 		
 		while(start<=end) {
-			System.out.println("Start: "+start+" End: "+end);
+			System.out.println("StartExploring: "+start+" End: "+end);
 
 			int mid = (start+end)/2;
 			

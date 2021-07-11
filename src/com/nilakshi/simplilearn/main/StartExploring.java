@@ -6,11 +6,13 @@ import java.util.logging.Logger;
 
 import com.nilakshi.simplilearn.filemanager.FileManager;
 
-public class Start {
+public class StartExploring {
 
-	private static Logger logger = Logger.getLogger(Start.class.getName());
+	private static Logger logger = Logger.getLogger(StartExploring.class.getName());
 	private static Scanner sc = null;
 	public static void main(String[] args) {
+		
+		/* Welcome message and developer details */
 		System.out.println("**************************************************************");
 		System.out.println("******************** Welcome to EXPLORER *********************");
 		System.out.println("*********************** Version: 1.0 *************************");
@@ -20,7 +22,7 @@ public class Start {
 
 		try {
 
-			//Main Menu
+			/* Main Menu */
 			main_menu:
 				while(true) {
 					sc = new Scanner(System.in);
@@ -32,6 +34,7 @@ public class Start {
 					try {
 						choice = sc.nextInt();
 					}catch (Exception e) {
+						/* Handled the exception whenever input is other than number */
 						System.err.println("Select Correct option from menu");
 						sc.reset();
 					}
@@ -56,16 +59,15 @@ public class Start {
 								}
 								break;
 	
-						default: System.err.println("Invalid option selected. Please, reselect");
+						/* If you input other than number options provided */		
+						default: System.err.println("Invalid option selected! Please, reselect correct option:");
 								 break;
 	
 					}
 						System.out.println();
 				}
 
-		} /*
-			 * catch (Exception e) { e.printStackTrace(); }
-			 */finally {
+		} finally {
 			if(sc==null) {
 				sc.close();
 			}
@@ -123,7 +125,7 @@ public class Start {
 				case 4: // Back to main menu
 					return;
 
-				default: System.out.println("Invalid Choice");
+				default: System.err.println("Invalid option selected! Please, reselect correct option:");
 
 				}
 				System.out.println();
