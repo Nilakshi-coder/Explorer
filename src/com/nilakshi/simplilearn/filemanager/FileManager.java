@@ -1,8 +1,10 @@
 package com.nilakshi.simplilearn.filemanager;
 
+import com.nilakshi.simplilearn.config.ProjectConfig;
+
 public abstract class FileManager{
 	
-	private static String filename = System.getProperty("user.dir");
+	private static String filename = ProjectConfig.getInstance().getRootDirectory();
 	private static FileSystem fileSystem = null;
 	
 	public static FileSystem getFileOperation() {

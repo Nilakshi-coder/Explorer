@@ -1,14 +1,10 @@
 package com.nilakshi.simplilearn.main;
 
-import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.logging.Logger;
-
 import com.nilakshi.simplilearn.filemanager.FileManager;
 
 public class StartExploring {
 
-	private static Logger logger = Logger.getLogger(StartExploring.class.getName());
 	private static Scanner sc = null;
 	public static void main(String[] args) {
 		
@@ -87,44 +83,41 @@ public class StartExploring {
 
 				String file;
 				switch(menu) {
-				case 1: // add a file
+				case 1: /* Create a new file */
 					System.out.println("Enter file name to be added");
 					file=sc.next();
 					boolean result=FileManager.getFileOperation().addFile(file);
 					if(result) {
 						System.out.println("File successfully created.");
-					}else {
-						System.out.println("File already exists.");
 					}
 					break;
 
-				case 2: // delete a file
+				case 2: /* Delete a file */
 					System.out.println("Enter file name to be deleted");
 					file=sc.next();
 					boolean result1 = FileManager.getFileOperation().deleteFile(file);
 
 					if(result1) {
 						System.out.println("File successfully deleted.");
-					}else {
-						System.out.println("File not found.");
 					}
 
 					break;
 
-				case 3: // case sensitive
+				case 3: /* Search a file */
 					System.out.println("Enter file name to be searched");
 					file=sc.next();
 					boolean status=FileManager.getFileOperation().searchFile(file);
 					if(status) {
 						System.out.println("File is present");
 					}else {
-						System.out.println("File not found.");
+						System.out.println("File not found");
 					}
 					break;
 
-				case 4: // Back to main menu
+				case 4: /* Back to main menu */
 					return;
 
+				/* If you input other than number options provided */		
 				default: System.err.println("Invalid option selected! Please, reselect correct option:");
 
 				}
